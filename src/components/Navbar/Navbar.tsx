@@ -3,39 +3,37 @@ import { AppBar, Box, Toolbar, Typography, Button, IconButton, Stack, styled, Te
 import { Person, ShoppingCartOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-const NavbarToolbar = styled(Toolbar)(() => ({
-    width: "100%",
-    padding: 0
+
+const NavbarStack = styled(Stack)(({ theme }) => ({
+    padding: theme.spacing(2)
 }));
 
-const NavbarStack = styled(Stack)(() => ({
-    width: "100%"
-}));
+const NavbarLink = styled(Link)(({ theme }) => ({
+    color: theme.palette.text.secondary
+}))
 
 export default function ButtonAppBar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                {/* <NavbarToolbar> */}
                     <NavbarStack direction='row' justifyContent="space-between" spacing={0}>
-                        <Link to='/'>
+                        <NavbarLink to='/'>
                             <Typography variant="h6" component="div">
                                 Ecommerce
                             </Typography>
-                        </Link>
-                        <Link to='/products'>Products</Link>
+                        </NavbarLink>
+                        <NavbarLink to='/products'>Products</NavbarLink>
                         {/* <TextField /> */}
                         <Stack spacing={1} direction="row">
-                            <Link to='/purchase-orders'>
+                            <NavbarLink to='/purchase-orders'>
                                 <Button color="inherit">Ordenes</Button>
-                            </Link>
+                            </NavbarLink>
                             <Person />
-                            <Link to='/shopping-cart'>
+                            <NavbarLink to='/shopping-cart'>
                                 <ShoppingCartOutlined />
-                            </Link>
+                            </NavbarLink>
                         </Stack>
                     </NavbarStack>
-                {/* </NavbarToolbar> */}
             </AppBar>
         </Box>
     );
