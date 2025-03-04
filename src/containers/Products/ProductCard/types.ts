@@ -1,3 +1,3 @@
-import { Product } from '../../../constants/types';
+import { Product } from '../../../constants/productsTypes';
 
 export interface ProductCardProps extends Product {};

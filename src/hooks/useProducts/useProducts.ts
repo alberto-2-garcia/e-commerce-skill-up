@@ -1,11 +1,8 @@
 import { HttpStatusCode } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { getProducts } from '../../api/products/products';
-import { Product } from '../../constants/types';
-
-interface QueryError extends Error {
-    status: HttpStatusCode;
-}
+import { Product } from '../../constants/productsTypes';
+import { QueryError } from '../../constants/types';
 
 export const useProducts = () => {
     const {
