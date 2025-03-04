@@ -1,13 +1,18 @@
 import { HttpStatusCode } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { getProducts } from '../../api/products/products';
+import { Product } from '../../constants/types';
+
+interface QueryError extends Error {
+    status: HttpStatusCode;
+}
 
 export const useProducts = () => {
     const {
         data: products,
         error,
         isFetching,
-    } = useQuery({
+    } = useQuery<Product[], QueryError>({
         initialData: [],
         queryKey: ['products'],
         queryFn: getProducts,

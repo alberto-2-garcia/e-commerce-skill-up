@@ -1,58 +1,59 @@
-import { Box, Card, CardContent, styled, Typography } from '@mui/material';
+import React, { FC } from 'react';
+import { Box, Card, CardContent, styled, Typography, Button } from '@mui/material';
+import { ProductCardProps } from './types';
 
 const ProductContainer = styled(Card)(() => ({
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     gap: '1rem',
+    height: '25rem'
 }));
 
-const ProductImage = styled('div')(({ src }) => ({
-    background: `url('${src}')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    width: '20rem',
-    height: '12rem',
+const ProductImage = styled('img')<{ src: String; }>(({ src }) => ({
+    // background: `url('${src}')`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
+    objectFit: 'cover',
+    width: '100%',
+    height: '100px',
 }));
 
 const ProductContent = styled(CardContent)(({ theme }) => ({
-    width: '100%',
+    // width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    gap: '1rem',
-    padding: theme.spacing(2),
+    height: '100%'
+    // gap: '1rem',
+    // padding: theme.spacing(2),
 }));
 
 const ProductDescription = styled(Box)(() => ({
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+    // width: '100%',
+    // display: 'flex',
+    // flexDirection: 'column',
 }));
 
 const ProductHeader = styled(Box)(() => ({
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    // width: '100%',
+    // display: 'flex',
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // justifyContent: 'space-between',
 }));
 
 const ProductFooter = styled(Box)(() => ({
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    // width: '100%',
+    // display: 'flex',
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // justifyContent: 'space-between',
 }));
 
-const ProductCard = ({
+const ProductCard: FC<ProductCardProps> = ({
     short_description,
     long_description,
-    available_quantity,
     price,
-    uom,
-    status,
-    brand,
     product_images,
 }) => {
     return (
@@ -64,16 +65,12 @@ const ProductCard = ({
                         <Typography variant='h5'>
                             {short_description}
                         </Typography>
-                        <Typography>{status}</Typography>
                     </ProductHeader>
-                    <Typography variant='caption'>Hecho por {brand}</Typography>
                     <Typography>{long_description}</Typography>
                 </ProductDescription>
                 <ProductFooter>
-                    <Typography>${price} MXN</Typography>
-                    <Typography>
-                        {available_quantity} {uom}
-                    </Typography>
+                    <Typography sx={{ fontWeight: 'bold' }}>${price} MXN</Typography>
+                    <Button variant='contained'>Agregar al carrito</Button>
                 </ProductFooter>
             </ProductContent>
         </ProductContainer>

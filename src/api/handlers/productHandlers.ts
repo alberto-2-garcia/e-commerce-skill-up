@@ -4,6 +4,6 @@ import { PRODUCTS_PATH } from '../../constants/apiConstants';
 
 export const productHandlers = [
     http.get(`${PRODUCTS_PATH}`, () => {
-        return HttpResponse.json(productsFixture);
+        return HttpResponse.json([...productsFixture, ...productsFixture, ...productsFixture, ...productsFixture, ...productsFixture]);
     }),
 ];
