@@ -10,7 +10,7 @@ export async function getShoppingCart() {
     return data;
 };
 
-export async function checkout({ shopping_cart_id }) {
+export async function checkout({ shopping_cart_id }: { shopping_cart_id: number; }) {
     // const response = await api.post(CHECKOUT_PATH, { shopping_cart_id });
     // return response.data;
     const { data } = await axios.post(CHECKOUT_PATH, { shopping_cart_id });
