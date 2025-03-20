@@ -8,5 +8,7 @@ type PurchaseOrderProduct = {
 
 export type PurchaseOrder = {
     purchase_order_id: number;
+    createdDttm: string;
+    total: number;
     products: PurchaseOrderProduct[];
 }

@@ -25,7 +25,7 @@ const ProductImage = styled('div')<{ src: string; alt: string; loading: string; 
 function SuccessfulPurchase() {
     const { orderId } = useParams();
 
-    const { purchaseOrder } = usePurchaseOrders();
+    const { purchaseOrder } = usePurchaseOrders({ purchase_order_id: orderId! });
     const { products } = purchaseOrder;
 
     return (

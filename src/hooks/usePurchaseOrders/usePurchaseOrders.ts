@@ -1,32 +1,46 @@
 import { HttpStatusCode } from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { getPurchaseOrder } from '../../api/purchaseOrders/purchaseOrders';
+import { getPurchaseOrder, getAllPurchaseOrders } from '../../api/purchaseOrders/purchaseOrders';
 import { PurchaseOrder } from '../../constants/purchaseOrdersTypes'
 import { QueryError } from '../../constants/types';
 
 const defaultPurchaseOrder: PurchaseOrder = {
     purchase_order_id: -1,
+    total: 0,
+    createdDttm: "",
     products: []
 }
 
-const usePurchaseOrders = () => {
+const usePurchaseOrders = ({ purchase_order_id }: { purchase_order_id: string | null; }) => {
+    const fetchPurchaseOrder = () => {
+        if (purchase_order_id) {
+            return getPurchaseOrder({ purchase_order_id });
+        } else {
+            return defaultPurchaseOrder;
+        }
+    }
     const {
-        data: purchaseOrder,
-        error,
-        isFetching,
+        data: purchaseOrder
     } = useQuery<PurchaseOrder, QueryError>({
         initialData: defaultPurchaseOrder,
         queryKey: ['purchase-order'],
-        queryFn: getPurchaseOrder,
+        queryFn: fetchPurchaseOrder,
+    });
+
+    const {
+        data: purchaseOrders,
+        isFetching,
+    } = useQuery<PurchaseOrder[], QueryError>({
+        initialData: [],
+        queryKey: ['all-purchase-order'],
+        queryFn: getAllPurchaseOrders,
     });
 
 
     return {
         purchaseOrder,
-        isError:
-            !isFetching && error?.status === HttpStatusCode.InternalServerError,
-        isNotFound: !isFetching && error?.status === HttpStatusCode.NotFound,
-        isFetching,
+        purchaseOrders,
+        isFetching
     };
 };
 
