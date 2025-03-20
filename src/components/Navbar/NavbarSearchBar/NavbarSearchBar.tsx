@@ -3,10 +3,10 @@ import { styled, TextField, InputAdornment, Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 
-const StyledSearchBar = styled(TextField)({
-    '& label.Mui-focused': {
-      color: '#A0AAB4',
-    },
+const StyledSearchBar = styled(TextField)(({ theme }) => ({
+    // '& label.Mui-focused': {
+    //   color: '#A0AAB4',
+    // },
     '& .MuiInput-underline:after': {
       borderBottomColor: '#B2BAC2',
     },
@@ -18,10 +18,15 @@ const StyledSearchBar = styled(TextField)({
         borderColor: '#B2BAC2',
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#6F7E8C',
+        borderColor: '#dcddde',
       },
+      color: theme.palette.common.white
     },
-  });
+}));
+
+const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
+    color: theme.palette.common.white
+}))
 
 function NavbarSearchBar() {
     const navigate = useNavigate();
@@ -42,6 +47,7 @@ function NavbarSearchBar() {
                 id="search-bar"
                 placeholder="Busca un product"
                 variant="outlined"
+                color="secondary"
                 size="small"
                 value={searchTerm}
                 onChange={handleOnChange}
@@ -49,7 +55,7 @@ function NavbarSearchBar() {
                     input: {
                         endAdornment: (
                         <InputAdornment position="end">
-                          <SearchIcon />
+                            <StyledSearchIcon />
                         </InputAdornment>
                       ),
                     },

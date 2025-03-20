@@ -4,7 +4,6 @@ import { Person, ShoppingCartOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import NavbarSearchBar from './NavbarSearchBar/NavbarSearchBar';
 
-
 const NavbarStack = styled(Stack)(({ theme }) => ({
     padding: theme.spacing(2)
 }));

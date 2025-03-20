@@ -9,6 +9,7 @@ export const theme = createTheme({
         },
     },
     palette: {
+        mode: 'light',
         text: {
             secondary: WHITE
         }
