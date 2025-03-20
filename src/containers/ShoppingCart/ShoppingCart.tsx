@@ -23,13 +23,15 @@ const ConfirmPurchaseContainer = styled(Paper)(() => ({
 }));
 
 function ShoppingCart() {
-  const { shoppingCart, handleCheckout } = useShoppingCart();
+    const { shoppingCart, handleCheckout } = useShoppingCart();
 
-  const { products, shopping_cart_id } = shoppingCart;
+    const { products, shopping_cart_id } = shoppingCart;
 
-  const handleConfirmPurchaseOnClick = () => {
-    handleCheckout({ shopping_cart_id })
-  }
+    const handleConfirmPurchaseOnClick = () => {
+        handleCheckout({ shopping_cart_id })
+    }
+
+    const totalShoppingCart = products?.reduce((acum, curr) => (acum + (curr.price * curr.quantity)), 0);
 
     return (
         <Box>
@@ -53,6 +55,30 @@ function ShoppingCart() {
                     ))}
                     </Stack>
                 </ProductsContainer>
+                <Stack
+                    direction="column"
+                    spacing={1}
+                    sx={{
+                    justifyContent: "flex-start",
+                    alignItems: "flex-end",
+                    marginTop: 2
+                    }}
+                >
+                    <ConfirmPurchaseContainer>
+                    <Stack
+                        direction="column"
+                        spacing={1}
+                        sx={{
+                        justifyContent: "center",
+                        alignItems: "flex-end",
+                        height: '100%'
+                        }}
+                    >
+                        <Typography>Total: ${totalShoppingCart} MXN</Typography>
+                        <Button variant='contained' onClick={handleConfirmPurchaseOnClick}>Confirm purchase</Button>
+                    </Stack>
+                    </ConfirmPurchaseContainer>
+                </Stack>
             </Container>
         </Box>
     )
