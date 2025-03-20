@@ -6,7 +6,7 @@ import { PageTitle } from '../../components/StyledComponents/StyledComponents'
 function PurchaseOrders() {
     return (
         <Box>
-        <Navbar />
+            <Navbar />
             <Container maxWidth='xl'>
                 <PageTitle variant='h4'>Pedidos</PageTitle>
             </Container>
