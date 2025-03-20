@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { AppBar, Box, Toolbar, Typography, Button, IconButton, Stack, styled, TextField } from '@mui/material';
+import { AppBar, Box, Typography, Button, IconButton, Stack, styled } from '@mui/material';
 import { Person, ShoppingCartOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import NavbarSearchBar from './NavbarSearchBar/NavbarSearchBar';
 
 
 const NavbarStack = styled(Stack)(({ theme }) => ({
@@ -22,8 +23,7 @@ export default function ButtonAppBar() {
                                 Ecommerce
                             </Typography>
                         </NavbarLink>
-                        <NavbarLink to='/products'>Products</NavbarLink>
-                        {/* <TextField /> */}
+                        <NavbarSearchBar />
                         <Stack spacing={1} direction="row">
                             <NavbarLink to='/purchase-orders'>
                                 <Button color="inherit">Ordenes</Button>
