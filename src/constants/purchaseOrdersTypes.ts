@@ -3,6 +3,7 @@ import { ProductImage } from './productsTypes'
 type PurchaseOrderProduct = {
     id: number;
     short_description: string;
+    price: number;
     product_images: ProductImage[];
 }
 

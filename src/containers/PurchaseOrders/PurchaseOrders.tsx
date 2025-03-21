@@ -1,4 +1,4 @@
-import { Box, Container, CircularProgress } from '@mui/material';
+import { Box, Container, CircularProgress, Stack } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 import { PageTitle } from '../../components/StyledComponents/StyledComponents'
 import usePurchaseOrders from '../../hooks/usePurchaseOrders/usePurchaseOrders';
@@ -16,12 +16,14 @@ function PurchaseOrders() {
                 ? <CircularProgress />
                 : 
                 <>
-                    {purchaseOrders.map(po => (
-                        <PurchaseOrderCard
-                            key={po.purchase_order_id}
-                            {...po}
-                        />
-                    ))}
+                    <Stack direction="column" spacing={4}>
+                        {purchaseOrders.map(po => (
+                            <PurchaseOrderCard
+                                key={po.purchase_order_id}
+                                {...po}
+                            />
+                        ))}
+                    </Stack>
                 </>
                 }
             </Container>

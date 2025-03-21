@@ -1,4 +1,3 @@
-import { HttpStatusCode } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { getPurchaseOrder, getAllPurchaseOrders } from '../../api/purchaseOrders/purchaseOrders';
 import { PurchaseOrder } from '../../constants/purchaseOrdersTypes'

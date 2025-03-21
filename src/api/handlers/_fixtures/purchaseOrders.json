@@ -7,6 +7,7 @@
             {
                 "id": 45734573457,
                 "short_description": "Cabeza de Lego",
+                "price": 100,
                 "product_images": [
                     {
                         "id": 43653456,
@@ -17,6 +18,7 @@
             {
                 "id": 334623462512354164,
                 "short_description": "Smart Watch",
+                "price": 4500,
                 "product_images": [
                     {
                         "id": 512345234,
@@ -27,6 +29,7 @@
             {
                 "id": 531234562346,
                 "short_description": "Headphones de Contraste",
+                "price": 6000,
                 "product_images": [
                     {
                         "id": 1235756245345,
@@ -44,6 +47,7 @@
             {
                 "id": 45734573457,
                 "short_description": "Cabeza de Lego",
+                "price": 100,
                 "product_images": [
                     {
                         "id": 43653456,
