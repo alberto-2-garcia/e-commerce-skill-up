@@ -1,17 +1,20 @@
-import { useState, SyntheticEvent, ChangeEvent } from 'react';
+import { useState, SyntheticEvent, ChangeEvent, useEffect } from 'react';
 import { Paper, Typography, Link, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from './LoginForm/LoginForm';
 import { LoginFormValues } from '../../constants/userTypes';
+import useUser from '../../hooks/useUser/useUser';
 
 const initialLoginValues: LoginFormValues = {
     email: '',
     password: ''
 }
 
-
 const Login = () => {
     const navigate = useNavigate();
+
+    const { login, loginState } = useUser();
+    const { isSuccess, error, isError } = loginState;
 
     const [values, setValues] = useState<LoginFormValues>(initialLoginValues);
     const [errors, setErrors] = useState<LoginFormValues>(initialLoginValues);
@@ -23,8 +26,18 @@ const Login = () => {
 
     const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('onSubmit')
+        login({ email: values.email, password: values.password });
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            // showMessage('You have logged in successfully!', MESSAGE_SEVERITY.SUCCESS);
+            navigate('/');
+        }
+        if (isError) {
+            // showMessage(error?.response?.data?.message || 'An error occurred while logging in', MESSAGE_SEVERITY.ERROR);
+        }
+      }, [isSuccess, isError, navigate]);   
 
     return (
         <Stack direction="column" alignItems="center" justifyContent="center" sx={{ height: '90vh' }}>
