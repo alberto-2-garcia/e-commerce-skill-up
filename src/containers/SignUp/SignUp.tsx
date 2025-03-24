@@ -2,14 +2,20 @@ import { useState, SyntheticEvent, ChangeEvent } from 'react';
 import { Paper, Typography, Link, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import SignUpForm from './SignUpForm/SignUpForm';
+import { SignUpFormValues } from '../../constants/userTypes';
 
-
+const initialSignUpValues: SignUpFormValues = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+    name: ''
+}
 
 const SignUp = () => {
     const navigate = useNavigate();
 
-    const [values, setValues] = useState({ email: '', password: '' });
-    const [errors, setErrors] = useState({ email: '', password: '' });
+    const [values, setValues] = useState<SignUpFormValues>(initialSignUpValues);
+    const [errors, setErrors] = useState<SignUpFormValues>(initialSignUpValues);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
