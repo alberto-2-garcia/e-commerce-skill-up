@@ -45,7 +45,7 @@ function NavbarSearchBar() {
         <Box component="form" onSubmit={searchProduct}>
             <StyledSearchBar
                 id="search-bar"
-                placeholder="Busca un product"
+                placeholder="Buscar productos"
                 variant="outlined"
                 color="secondary"
                 size="small"

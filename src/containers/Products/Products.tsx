@@ -11,7 +11,7 @@ function Products() {
     const { products } = useProducts();
     return (
         <Box>
-        <Navbar />
+            <Navbar />
             <Container maxWidth='xl'>
                 <PageTitle variant='h4'>Resultados</PageTitle>
                 <Grid container spacing={2}>

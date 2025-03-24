@@ -5,7 +5,7 @@ import { DateTime } from 'luxon';
 function PurchaseOrderHeaderInfo({ label, header }: { label: string | number; header: string; }) {
     return (
         <Box>
-            <Typography>{header}</Typography>
+            <Typography sx={{ fontWeight: 'bold' }}>{header}</Typography>
             <Typography>{label}</Typography>
         </Box>
     )
@@ -22,7 +22,7 @@ const ProductImage = styled('div')<{ src: string; alt: string; loading: string; 
 function PurchaseOrderCard({ purchase_order_id, products, createdDttm, total }: PurchaseOrder) {
     return (
         <Paper elevation={3}>
-            <Stack direction="row" spacing={4} sx={{ padding: 2 }}>
+            <Stack direction="row" spacing={4} sx={{ padding: 2, background: '#ececec' }}>
                 <PurchaseOrderHeaderInfo
                     header='Número de pedido'
                     label={purchase_order_id}

@@ -12,23 +12,27 @@ const NavbarLink = styled(Link)(({ theme }) => ({
     color: theme.palette.text.secondary
 }))
 
+const WHITE = "#FFFFFF";
+
 export default function ButtonAppBar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                     <NavbarStack direction='row' justifyContent="space-between" spacing={0}>
                         <NavbarLink to='/'>
-                            <Typography variant="h6" component="div">
+                            <Typography variant="h6" color="common.white">
                                 Ecommerce
                             </Typography>
                         </NavbarLink>
                         <NavbarSearchBar />
                         <Stack spacing={1} direction="row">
-                            <NavbarLink to='/purchase-orders'>
+                            <NavbarLink to='/purchase-orders' sx={{ color: WHITE }}>
                                 <Button color="inherit">Ordenes</Button>
                             </NavbarLink>
-                            <Person />
-                            <NavbarLink to='/shopping-cart'>
+                            <NavbarLink to='/login' sx={{ color: WHITE }}>
+                                <Person />
+                            </NavbarLink>
+                            <NavbarLink to='/shopping-cart' sx={{ color: WHITE }}>
                                 <ShoppingCartOutlined />
                             </NavbarLink>
                         </Stack>

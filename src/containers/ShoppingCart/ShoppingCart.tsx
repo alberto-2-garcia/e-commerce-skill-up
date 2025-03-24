@@ -75,7 +75,7 @@ function ShoppingCart() {
                         }}
                     >
                         <Typography>Total: ${totalShoppingCart} MXN</Typography>
-                        <Button variant='contained' onClick={handleConfirmPurchaseOnClick}>Confirm purchase</Button>
+                        <Button variant='contained' onClick={handleConfirmPurchaseOnClick}>Confirmar compra</Button>
                     </Stack>
                     </ConfirmPurchaseContainer>
                 </Stack>

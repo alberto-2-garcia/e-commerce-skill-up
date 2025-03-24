@@ -4,6 +4,7 @@ type PurchaseOrderProduct = {
     id: number;
     short_description: string;
     price: number;
+    quantity: number,
     product_images: ProductImage[];
 }
 
