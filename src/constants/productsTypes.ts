@@ -16,10 +16,12 @@ export interface Product {
     available_quantity: number;
     price: number;
     uom: string;
-    sku: number;
+    sku: string;
     barcode: number;
     status: string;
     brand: string;
+    rating: number;
+    reviews: number;
     product_images: ProductImage[];
     category: Category;
 }

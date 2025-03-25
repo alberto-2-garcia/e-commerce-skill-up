@@ -14,6 +14,7 @@ import SuccessfulPurchase from './containers/SuccessfulPurchase/SuccessfulPurcha
 import Login from './containers/Login/Login';
 import SignUp from './containers/SignUp/SignUp';
 import Profile from './containers/Profile/Profile';
+import ProductPage from './containers/ProductPage/ProductPage';
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
                             <Routes>
                                 <Route path='/' element={<Home />} />
                                 <Route path='/products' element={<Products />} />
+                                <Route path='/product/:productId' element={<ProductPage />} />
                                 <Route path='/purchase-orders' element={<PurchaseOrders />} />
                                 <Route path='/shopping-cart' element={<ShoppingCart />} />
                                 <Route path='/successful-purchase/:orderId' element={<SuccessfulPurchase />} />

@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Card, CardContent, styled, Typography, Button } from '@mui/material';
 import { ProductCardProps } from './types';
+import { useNavigate } from 'react-router-dom';
 
 const ProductContainer = styled(Card)(() => ({
     display: 'flex',
@@ -55,9 +56,16 @@ const ProductCard: FC<ProductCardProps> = ({
     long_description,
     price,
     product_images,
+    id
 }) => {
+    const navigate = useNavigate();
+    
+    const openProductPage = () => {
+        navigate(`/product/${id}`)
+    }
+
     return (
-        <ProductContainer>
+        <ProductContainer onClick={openProductPage}>
             <ProductImage src={product_images[0].url} />
             <ProductContent>
                 <ProductDescription>

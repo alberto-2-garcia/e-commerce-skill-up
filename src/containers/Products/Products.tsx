@@ -1,14 +1,15 @@
 import { Box, Container, Typography, Grid2 as Grid, styled } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 import ProductCard from './ProductCard/ProductCard';
-import { useProducts } from '../../hooks/useProducts/useProducts';
+import useProducts from '../../hooks/useProducts/useProducts';
 
 const PageTitle = styled(Typography)(({ theme }) => ({
     padding: `${theme.spacing(2)} 0`
 }))
 
 function Products() {
-    const { products } = useProducts();
+    const { products } = useProducts({ productId: '' });
+
     return (
         <Box>
             <Navbar />

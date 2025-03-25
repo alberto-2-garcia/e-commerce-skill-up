@@ -6,10 +6,12 @@
         "available_quantity": 10,
         "price": 100,
         "uom": "Pz",
-        "sku": 9235795978435,
+        "sku": "9235795978435",
         "barcode": 13245234623465,
         "status": "Disponible",
         "brand": "EVIDEN",
+        "rating": 4.2,
+        "reviews": 200,
         "product_images": [
             {
                 "id": 43653456,
@@ -33,6 +35,8 @@
         "barcode": 3457345734562346,
         "status": "Disponible",
         "brand": "EVIDEN",
+        "rating": 3.2,
+        "reviews": 10,
         "product_images": [
             {
                 "id": 512345234,
@@ -56,10 +60,36 @@
         "barcode": 3462346134523,
         "status": "Disponible",
         "brand": "EVIDEN",
+        "rating": 4.7,
+        "reviews": 20000,
         "product_images": [
             {
                 "id": 1235756245345,
                 "url": "https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdG98ZW58MHx8MHx8fDA%3D"
+            }
+        ],
+        "category": {
+            "id": 1523562346,
+            "name": "Electronicos",
+            "description": "Dispositivos electronicos de uso personal o para uso en tecnologia"
+        }
+    },
+    {
+        "id": 1231,
+        "short_description": "TCL Smart TV Pantalla 32\" 32S310R FHD 2K",
+        "long_description": "",
+        "price": 2562,
+        "uom": "Pz",
+        "sku": 5735423512726,
+        "barcode": 3462346134123,
+        "status": "Disponible",
+        "brand": "EVIDEN",
+        "rating": 2.6,
+        "reviews": 12400,
+        "product_images": [
+            {
+                "id": 1235756245345,
+                "url": "https://m.media-amazon.com/images/I/811KJMepW1L._AC_SX679_.jpg"
             }
         ],
         "category": {
