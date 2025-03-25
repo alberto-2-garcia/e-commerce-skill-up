@@ -1,14 +1,25 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userReducer from './userSlice';
 import { useDispatch, useSelector, useStore } from 'react-redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' 
+
+const persistConfig = {
+    key: 'root',
+    storage,
+  }
 
 const rootReducer = combineReducers({
     user: userReducer
 });
 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 export const store = configureStore({
-    reducer: rootReducer,
+    reducer: persistedReducer,
 });
+
+export const persistor = persistStore(store);
 
 // Get the type of our store variable
 export type AppStore = typeof store
