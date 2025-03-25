@@ -1,5 +1,5 @@
 import { useState, SyntheticEvent, ChangeEvent, useEffect } from 'react';
-import { Paper, Typography, Link, Stack } from '@mui/material';
+import { Paper, Typography, Link, Stack, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from './LoginForm/LoginForm';
 import { LoginFormValues } from '../../constants/userTypes';
@@ -14,10 +14,15 @@ const Login = () => {
     const navigate = useNavigate();
 
     const { login, loginState } = useUser();
-    const { isSuccess, error, isError } = loginState;
+    const { isSuccess, isError } = loginState;
 
     const [values, setValues] = useState<LoginFormValues>(initialLoginValues);
     const [errors, setErrors] = useState<LoginFormValues>(initialLoginValues);
+    const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -31,11 +36,10 @@ const Login = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            // showMessage('You have logged in successfully!', MESSAGE_SEVERITY.SUCCESS);
             navigate('/');
         }
         if (isError) {
-            // showMessage(error?.response?.data?.message || 'An error occurred while logging in', MESSAGE_SEVERITY.ERROR);
+            setOpenSnackbar(true);
         }
       }, [isSuccess, isError, navigate]);   
 
@@ -75,6 +79,13 @@ const Login = () => {
                     isLoading={false}
                 />
             </Paper>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={openSnackbar}
+                onClose={handleCloseSnackbar}
+            >
+                <Alert severity='error'>Hubo un error al iniciar sesión</Alert>
+            </Snackbar>
         </Stack>
     );
 };

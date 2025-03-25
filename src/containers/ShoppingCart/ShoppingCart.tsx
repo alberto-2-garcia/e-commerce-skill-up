@@ -40,10 +40,10 @@ function ShoppingCart() {
                 <PageTitle variant='h4'>Carrito de compras</PageTitle>
                 <ProductsContainer>
                     <ProductsHeaders container spacing={1}>
-                        <Grid size={2}><Typography>Product</Typography></Grid>
+                        <Grid size={2}><Typography>Producto</Typography></Grid>
                         <Grid size={5}></Grid>
-                        <Grid size={1}><Typography>Quantity</Typography></Grid>
-                        <Grid size={2}><Typography>Price</Typography></Grid>
+                        <Grid size={1}><Typography>Cantidad</Typography></Grid>
+                        <Grid size={2}><Typography>Precio</Typography></Grid>
                         <Grid size={2}><Typography>Total</Typography></Grid>
                     </ProductsHeaders>
                     <Stack
