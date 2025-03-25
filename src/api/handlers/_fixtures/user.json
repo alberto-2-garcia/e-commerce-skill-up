@@ -1,6 +1,6 @@
 {
     "user": "userAlberto",
     "email": "test@test.test",
-    "firstName": "Alberto Garcia",
+    "name": "Alberto García",
     "accessToken": "mocked_jwt_token"
 }

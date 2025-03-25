@@ -12,6 +12,7 @@ import ShoppingCart from './containers/ShoppingCart/ShoppingCart';
 import SuccessfulPurchase from './containers/SuccessfulPurchase/SuccessfulPurchase';
 import Login from './containers/Login/Login';
 import SignUp from './containers/SignUp/SignUp';
+import Profile from './containers/Profile/Profile';
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ function App() {
                             <Route path='/successful-purchase/:orderId' element={<SuccessfulPurchase />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/sign-up' element={<SignUp />} />
+                            <Route path='/profile' element={<Profile />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </BrowserRouter>
