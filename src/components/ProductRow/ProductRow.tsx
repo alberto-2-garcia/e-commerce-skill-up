@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { Card, Typography, Grid2 as Grid, styled, Stack } from '@mui/material';
+import { Card, Typography, Grid2 as Grid, styled, Stack, Button } from '@mui/material';
 import { ProductRow as ProductRowType } from '../../constants/shoppingCartTypes';
 import QuantityPicker from "../../components/QuantityPicker/QuantityPicker";
 import { useAppDispatch } from '../../store';
 import { editProduct, eraseProduct } from '../../store/shoppingCartSlice';
+import { formatMoney } from '../../utils/utils';
 
 const ProductImage = styled('div')<{ src: string; alt: string; loading: string; }>(({ src }) => ({
     background: `url('${src}')`,
@@ -32,6 +33,10 @@ const ProductRow: FC<ProductRowType> = ({ short_description, quantity, price, pr
         }
     }
 
+    const removeProduct = () => {
+        dispatch(eraseProduct({ id, quantity: quantity - 1 }));
+    }
+
     const quantityPickerProps = {
         increaseQuantity,
         decreaseQuantity,
@@ -48,15 +53,22 @@ const ProductRow: FC<ProductRowType> = ({ short_description, quantity, price, pr
                         loading="lazy"
                     />
                 </Grid>
-                <Grid size={5}>
-                    <Stack>
-                        <Typography variant='h5'>{short_description}</Typography>
-                        <Typography>{long_description}</Typography>
+                <Grid size={8}>
+                    <Stack
+                        direction="column"
+                        justifyContent="flex-start"
+                        sx={{ paddingLeft: 2 }}
+                    >
+                        <Typography align='left' variant='h6'>{short_description}</Typography>
+                        <Typography align='left'>{long_description}</Typography>
+                        <Stack direction="row" spacing={1}>
+                            <QuantityPicker {...quantityPickerProps} changeDecreaseIcon={shouldRemoveProduct}/>
+                            <Button variant='text' onClick={removeProduct}>Eliminar producto</Button>
+                        </Stack>
                     </Stack>
                 </Grid>
-                <Grid size={1}><Typography><QuantityPicker {...quantityPickerProps} changeDecreaseIcon={shouldRemoveProduct}/></Typography></Grid>
-                <Grid size={2}><Typography>${price} MXN</Typography></Grid>
-                <Grid size={2}><Typography>${total} MXN</Typography></Grid>
+                <Grid size={1}><Typography>{formatMoney(price)}</Typography></Grid>
+                <Grid size={1}><Typography>{formatMoney(total)}</Typography></Grid>
             </Grid>
         </Card>
     );

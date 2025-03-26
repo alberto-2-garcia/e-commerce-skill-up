@@ -4,6 +4,8 @@ import { getShoppingCart, checkout } from '../../api/shoppingCart/shoppingCart';
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart } from '../../constants/shoppingCartTypes'
 import { QueryError } from '../../constants/types';
+import { useAppDispatch } from '../../store';
+import { clearShoppingCart } from '../../store/shoppingCartSlice';
 
 const defaultShoppingCart = {
     shopping_cart_id: -1,
@@ -13,6 +15,8 @@ const defaultShoppingCart = {
 
 export const useShoppingCart = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    
     
     const {
         data: shoppingCart,
@@ -26,10 +30,12 @@ export const useShoppingCart = () => {
 
     const {
         mutate: handleCheckout,
+        ...checkoutState
     } = useMutation({
         mutationFn: checkout,
         onSuccess: (data) => {
             navigate(`/successful-purchase/${data.orderId}`);
+            dispatch(clearShoppingCart());
         },
         onError: (err) => {
             console.error('checkout error:', err);
@@ -43,6 +49,7 @@ export const useShoppingCart = () => {
             !isFetching && error?.status === HttpStatusCode.InternalServerError,
         isNotFound: !isFetching && error?.status === HttpStatusCode.NotFound,
         isFetching,
-        handleCheckout
+        handleCheckout,
+        checkoutState
     };
 };

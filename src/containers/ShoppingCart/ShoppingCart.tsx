@@ -4,9 +4,9 @@ import { PageTitle } from '../../components/StyledComponents/StyledComponents'
 import { useShoppingCart } from '../../hooks/useShoppingCart/useShoppingCart';
 import useProducts from '../../hooks/useProducts/useProducts';
 import ProductRow from '../../components/ProductRow/ProductRow';
-import { useAppSelector, useAppDispatch } from '../../store';
-import { clearShoppingCart } from '../../store/shoppingCartSlice';
+import { useAppSelector } from '../../store';
 import { useNavigate } from 'react-router-dom'
+import { formatMoney } from '../../utils/utils';
 
 const ProductsContainer = styled(Paper)(() => ({
     padding: 8,
@@ -29,7 +29,6 @@ const ConfirmPurchaseContainer = styled(Paper)(() => ({
 
 function ShoppingCart() {
     const { handleCheckout } = useShoppingCart();
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { products, shopping_cart_id } = useAppSelector(
         (state) => state.shoppingCart
@@ -42,7 +41,7 @@ function ShoppingCart() {
     const { products: productsList } = useProducts({ productId: '' });
 
     const handleConfirmPurchaseOnClick = () => {
-        handleCheckout({ shopping_cart_id })
+        handleCheckout({ shopping_cart_id });
     }
 
     const shoppingCartProducts = products.map(pro => ({ ...pro, ...productsList.find(p => p.id === pro.id)! }));
@@ -59,11 +58,10 @@ function ShoppingCart() {
                     ?
                         <>
                             <ProductsHeaders container spacing={1}>
-                                <Grid size={2}><Typography>Producto</Typography></Grid>
-                                <Grid size={5}></Grid>
-                                <Grid size={1}><Typography>Cantidad</Typography></Grid>
-                                <Grid size={2}><Typography>Precio</Typography></Grid>
-                                <Grid size={2}><Typography>Total</Typography></Grid>
+                                <Grid size={2}></Grid>
+                                <Grid size={8}><Typography>Producto</Typography></Grid>
+                                <Grid size={1}><Typography>Precio</Typography></Grid>
+                                <Grid size={1}><Typography>Total</Typography></Grid>
                             </ProductsHeaders>
                             <Stack
                                 spacing={0}
@@ -106,9 +104,8 @@ function ShoppingCart() {
                         height: '100%'
                         }}
                     >
-                        <Typography>Total: ${totalShoppingCart} MXN</Typography>
+                        <Typography>Total: {formatMoney(totalShoppingCart)}</Typography>
                         <Button variant='contained' disabled={!shoppingCartProducts.length} onClick={handleConfirmPurchaseOnClick}>Confirmar compra</Button>
-                        <Button variant='contained' onClick={() => dispatch(clearShoppingCart())}>Borrar carrito</Button>
                     </Stack>
                     </ConfirmPurchaseContainer>
                 </Stack>
