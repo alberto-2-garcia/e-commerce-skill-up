@@ -1,8 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Box, Card, CardContent, Typography, Button, Stack, CardMedia, CardActions, CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { ProductCardProps } from './types';
 import { PRODUCT_PAGE } from '../../../constants/routesConstants';
+import { useAppDispatch } from '../../../store';
+import { addProduct } from '../../../store/shoppingCartSlice';
 
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -15,6 +17,13 @@ const ProductCard: FC<ProductCardProps> = ({
     const productLink = PRODUCT_PAGE.replace(':productId', id.toString());
 
     const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
+
+    const addProductToShoppingCart = () => {
+        dispatch(addProduct({ id, quantity: 1 }));
+        navigate('/shopping-cart');
+    }
 
     return (
         <Card variant="outlined" sx={{ height: '100%' }}>
@@ -42,7 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({
                 <CardActions>
                     <Button
                         variant='contained'
-                        onClick={() => console.log('agregar a carrito')}
+                        onClick={addProductToShoppingCart}
                     >
                         Agregar al carrito
                     </Button>

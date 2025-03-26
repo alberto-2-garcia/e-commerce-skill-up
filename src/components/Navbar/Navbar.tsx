@@ -1,9 +1,10 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { AppBar, Box, Typography, Button, Stack, styled, IconButton } from '@mui/material';
 import { Person, ShoppingCartOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import NavbarSearchBar from './NavbarSearchBar/NavbarSearchBar';
+import { setShoppingCart, clearShoppingCart } from '../../store/shoppingCartSlice';
 
 const NavbarStack = styled(Stack)(({ theme }) => ({
     padding: theme.spacing(2)
@@ -13,10 +14,22 @@ const NavbarLink = styled(Link)(({ theme }) => ({
     color: theme.palette.common.white
 }))
 
-export default function ButtonAppBar() {
-    const { accessToken } = useAppSelector(
+export default function Navbar() {
+    const { accessToken, user } = useAppSelector(
         (state) => state.user
     );
+
+    const dispatch = useAppDispatch();
+
+    const shoppingCartData = useAppSelector(
+        (state) => state.shoppingCart
+    );
+
+    useEffect(() => {
+        if(accessToken) {
+            dispatch(setShoppingCart({...shoppingCartData, user_id: user}));
+        }
+    }, [accessToken])
 
     return (
         <Box sx={{ flexGrow: 1 }}>

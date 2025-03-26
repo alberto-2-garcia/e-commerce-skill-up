@@ -1,8 +1,12 @@
+import { Container, Typography, Paper, styled, Grid2 as Grid, Button, Stack, Divider, Box } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 import { PageTitle } from '../../components/StyledComponents/StyledComponents'
 import { useShoppingCart } from '../../hooks/useShoppingCart/useShoppingCart';
-import { Container, Typography, Paper, styled, Grid2 as Grid, Button, Stack, Divider, Box } from '@mui/material';
+import useProducts from '../../hooks/useProducts/useProducts';
 import ProductRow from '../../components/ProductRow/ProductRow';
+import { useAppSelector, useAppDispatch } from '../../store';
+import { clearShoppingCart } from '../../store/shoppingCartSlice';
+import { useNavigate } from 'react-router-dom'
 
 const ProductsContainer = styled(Paper)(() => ({
     padding: 8,
@@ -20,18 +24,30 @@ const ConfirmPurchaseContainer = styled(Paper)(() => ({
     width: '12rem',
     height: '5rem',
     padding: 16,
+    
 }));
 
 function ShoppingCart() {
-    const { shoppingCart, handleCheckout } = useShoppingCart();
+    const { handleCheckout } = useShoppingCart();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const { products, shopping_cart_id } = useAppSelector(
+        (state) => state.shoppingCart
+    );
 
-    const { products, shopping_cart_id } = shoppingCart;
+    const { accessToken } = useAppSelector(
+        (state) => state.user
+    );
+    
+    const { products: productsList } = useProducts({ productId: '' });
 
     const handleConfirmPurchaseOnClick = () => {
         handleCheckout({ shopping_cart_id })
     }
 
-    const totalShoppingCart = products?.reduce((acum, curr) => (acum + (curr.price * curr.quantity)), 0);
+    const shoppingCartProducts = products.map(pro => ({ ...pro, ...productsList.find(p => p.id === pro.id)! }));
+
+    const totalShoppingCart = shoppingCartProducts?.reduce((acum, curr) => (acum + (curr.price * curr.quantity)), 0);
 
     return (
         <Box>
@@ -39,21 +55,37 @@ function ShoppingCart() {
             <Container maxWidth='xl'>
                 <PageTitle variant='h4'>Carrito de compras</PageTitle>
                 <ProductsContainer>
-                    <ProductsHeaders container spacing={1}>
-                        <Grid size={2}><Typography>Producto</Typography></Grid>
-                        <Grid size={5}></Grid>
-                        <Grid size={1}><Typography>Cantidad</Typography></Grid>
-                        <Grid size={2}><Typography>Precio</Typography></Grid>
-                        <Grid size={2}><Typography>Total</Typography></Grid>
-                    </ProductsHeaders>
-                    <Stack
-                    spacing={0}
-                    divider={<Divider orientation="horizontal" flexItem />}
-                    >
-                    {products?.map(product => (
-                        <ProductRow key={product.id} {...product} />
-                    ))}
-                    </Stack>
+                    {shoppingCartProducts.length
+                    ?
+                        <>
+                            <ProductsHeaders container spacing={1}>
+                                <Grid size={2}><Typography>Producto</Typography></Grid>
+                                <Grid size={5}></Grid>
+                                <Grid size={1}><Typography>Cantidad</Typography></Grid>
+                                <Grid size={2}><Typography>Precio</Typography></Grid>
+                                <Grid size={2}><Typography>Total</Typography></Grid>
+                            </ProductsHeaders>
+                            <Stack
+                                spacing={0}
+                                divider={<Divider orientation="horizontal" flexItem />}
+                            >
+                                {productsList.length && shoppingCartProducts?.map(product => (
+                                    <ProductRow key={product.id} {...product} />
+                                ))}
+                            </Stack>
+                        </>
+                    :
+                        <Stack sx={{ height: '15rem', margin:0 }} justifyContent="center" spacing={1}>
+                            <Typography variant='h4'>Tu carrito está vacío</Typography>
+                            <Typography variant='subtitle1'>Agrega productos a tu carrito</Typography>
+                            {!accessToken &&
+                                <Stack direction="row" justifyContent="center" spacing={2}>
+                                    <Button variant="contained" onClick={() => navigate('/login')}>Iniciar sesión</Button>
+                                    <Button variant="outlined" onClick={() => navigate('/sign-up')}>Crear cuenta</Button>
+                                </Stack>
+                            }
+                        </Stack>
+                    }
                 </ProductsContainer>
                 <Stack
                     direction="column"
@@ -75,7 +107,8 @@ function ShoppingCart() {
                         }}
                     >
                         <Typography>Total: ${totalShoppingCart} MXN</Typography>
-                        <Button variant='contained' onClick={handleConfirmPurchaseOnClick}>Confirmar compra</Button>
+                        <Button variant='contained' disabled={!shoppingCartProducts.length} onClick={handleConfirmPurchaseOnClick}>Confirmar compra</Button>
+                        <Button variant='contained' onClick={() => dispatch(clearShoppingCart())}>Borrar carrito</Button>
                     </Stack>
                     </ConfirmPurchaseContainer>
                 </Stack>

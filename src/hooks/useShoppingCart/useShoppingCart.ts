@@ -7,12 +7,13 @@ import { QueryError } from '../../constants/types';
 
 const defaultShoppingCart = {
     shopping_cart_id: -1,
-    user_id: -1,
+    user_id: '',
     products: []
 }
 
 export const useShoppingCart = () => {
     const navigate = useNavigate();
+    
     const {
         data: shoppingCart,
         error,

@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
-import { Box, Container, Stack, Typography, Button, Rating, Divider, Grid2 as Grid, styled, Paper, ButtonGroup, IconButton } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box, Container, Stack, Typography, Button, Rating, Divider, Grid2 as Grid, styled, Paper } from "@mui/material";
 import Navbar from "../../components/Navbar/Navbar";
-import { PageTitle } from "../../components/StyledComponents/StyledComponents";
 import useProducts from "../../hooks/useProducts/useProducts";
-import { useEffect, useState } from "react";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import QuantityPicker, { useQuantityPicker } from "../../components/QuantityPicker/QuantityPicker";
+import { useAppDispatch } from "../../store";
+import { addProduct } from "../../store/shoppingCartSlice";
+
 
 const ProductImage = styled('img')<{ src: String; }>(({ src }) => ({
     objectFit: 'cover',
@@ -15,18 +15,16 @@ const ProductImage = styled('img')<{ src: String; }>(({ src }) => ({
 
 function ProductPage() {
     const { productId } = useParams();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    
     const { product } = useProducts({ productId: productId || '' });
 
-    const [quantity, setQuantity] = useState<number>(1);
+    const quantityPickerProps = useQuantityPicker({ quantityDefault: 1 })
 
-    const incrementQuantity = () => {
-        setQuantity(quantity => quantity+1);
-    }
-
-    const decrementQuantity = () => {
-        if (quantity > 1) {
-            setQuantity(quantity => quantity-1);
-        }
+    const addProductToShoppingCart = () => {
+        dispatch(addProduct({ id: Number(productId), quantity: quantityPickerProps.quantity }));
+        navigate('/shopping-cart');
     }
 
     return (
@@ -53,12 +51,8 @@ function ProductPage() {
                                 <Stack direction="column" alignItems="flex-end" spacing={2}>
                                     <Typography variant="h6">${product.price} MXN</Typography>
                                     <Typography>Disponible: {product.available_quantity} {product.uom}</Typography>
-                                    <Stack direction="row" spacing={2} alignItems="center">
-                                        <IconButton onClick={decrementQuantity}><RemoveIcon /></IconButton>
-                                        <Typography>{quantity}</Typography>
-                                        <IconButton onClick={incrementQuantity}><AddIcon /></IconButton>
-                                    </Stack>
-                                    <Button variant="contained">Agregar al carrito</Button>
+                                    <QuantityPicker {...quantityPickerProps} disableDecrease={!quantityPickerProps.quantity}/>
+                                    <Button variant="contained" onClick={addProductToShoppingCart}>Agregar al carrito</Button>
                                 </Stack>
                             </Paper>
                         </Grid>
