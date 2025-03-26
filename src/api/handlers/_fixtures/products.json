@@ -77,7 +77,8 @@
     {
         "id": 1231,
         "short_description": "TCL Smart TV Pantalla 32\" 32S310R FHD 2K",
-        "long_description": "",
+        "long_description": "Televisión Smart de 32 pulgadas FHD con Roku TV",
+        "available_quantity": 20,
         "price": 2562,
         "uom": "Pz",
         "sku": 5735423512726,

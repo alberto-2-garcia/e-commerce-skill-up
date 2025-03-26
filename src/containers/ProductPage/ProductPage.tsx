@@ -49,7 +49,7 @@ function ProductPage() {
                                     <Rating value={product.rating} precision={0.5} readOnly/>
                                     <Typography>{product.reviews} calificaciones</Typography>
                                 </Stack>
-                                <Divider />
+                                <Divider sx={{ marginTop: 2, marginBottom: 2 }}/>
                                 <Stack direction="column" alignItems="flex-end" spacing={2}>
                                     <Typography variant="h6">${product.price} MXN</Typography>
                                     <Typography>Disponible: {product.available_quantity} {product.uom}</Typography>

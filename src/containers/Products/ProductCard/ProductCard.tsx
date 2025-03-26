@@ -1,55 +1,9 @@
 import React, { FC } from 'react';
-import { Box, Card, CardContent, styled, Typography, Button } from '@mui/material';
-import { ProductCardProps } from './types';
+import { Box, Card, CardContent, Typography, Button, Stack, CardMedia, CardActions, CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { ProductCardProps } from './types';
+import { PRODUCT_PAGE } from '../../../constants/routesConstants';
 
-const ProductContainer = styled(Card)(() => ({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-    height: '25rem'
-}));
-
-const ProductImage = styled('img')<{ src: String; }>(({ src }) => ({
-    // background: `url('${src}')`,
-    // backgroundRepeat: 'no-repeat',
-    // backgroundSize: 'cover',
-    objectFit: 'cover',
-    width: '100%',
-    height: '100px',
-}));
-
-const ProductContent = styled(CardContent)(({ theme }) => ({
-    // width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '100%'
-    // gap: '1rem',
-    // padding: theme.spacing(2),
-}));
-
-const ProductDescription = styled(Box)(() => ({
-    // width: '100%',
-    // display: 'flex',
-    // flexDirection: 'column',
-}));
-
-const ProductHeader = styled(Box)(() => ({
-    // width: '100%',
-    // display: 'flex',
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'space-between',
-}));
-
-const ProductFooter = styled(Box)(() => ({
-    // width: '100%',
-    // display: 'flex',
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'space-between',
-}));
 
 const ProductCard: FC<ProductCardProps> = ({
     short_description,
@@ -58,30 +12,43 @@ const ProductCard: FC<ProductCardProps> = ({
     product_images,
     id
 }) => {
+    const productLink = PRODUCT_PAGE.replace(':productId', id.toString());
+
     const navigate = useNavigate();
-    
-    const openProductPage = () => {
-        navigate(`/product/${id}`)
-    }
 
     return (
-        <ProductContainer onClick={openProductPage}>
-            <ProductImage src={product_images[0].url} />
-            <ProductContent>
-                <ProductDescription>
-                    <ProductHeader>
-                        <Typography variant='h5'>
-                            {short_description}
-                        </Typography>
-                    </ProductHeader>
-                    <Typography>{long_description}</Typography>
-                </ProductDescription>
-                <ProductFooter>
-                    <Typography sx={{ fontWeight: 'bold' }}>${price} MXN</Typography>
-                    <Button variant='contained'>Agregar al carrito</Button>
-                </ProductFooter>
-            </ProductContent>
-        </ProductContainer>
+        <Card variant="outlined" sx={{ height: '100%' }}>
+            <Stack justifyContent="space-between" sx={{ height: '100%' }}>
+                <CardActionArea onClick={() => navigate(productLink)} sx={{ height: '100%' }}>
+                    <Stack sx={{ height: '100%' }}>
+                        <CardMedia
+                            sx={{ height: 250 }}
+                            image={product_images[0].url}
+                            title="green iguana"
+                        />
+                        <CardContent sx={{ height: '100%' }}>
+                            <Stack direction="column" justifyContent="space-between" sx={{ height: '100%' }}>
+                                <Box>
+                                    <Typography variant='h5'>
+                                        {short_description}
+                                    </Typography>
+                                    <Typography>{long_description}</Typography>
+                                </Box>
+                                <Typography sx={{ fontWeight: 'bold' }}>${price} MXN</Typography>
+                            </Stack>
+                        </CardContent>
+                    </Stack>
+                </CardActionArea>
+                <CardActions>
+                    <Button
+                        variant='contained'
+                        onClick={() => console.log('agregar a carrito')}
+                    >
+                        Agregar al carrito
+                    </Button>
+                </CardActions>
+            </Stack>
+        </Card>
     );
 };
 

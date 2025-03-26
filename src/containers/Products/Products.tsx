@@ -15,7 +15,7 @@ function Products() {
             <Navbar />
             <Container maxWidth='xl'>
                 <PageTitle variant='h4'>Resultados</PageTitle>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} alignItems="stretch">
                     {products?.map((product) => (
                         <Grid key={product.id} size={2}>
                             <ProductCard {...product} />
