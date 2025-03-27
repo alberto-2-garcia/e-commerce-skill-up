@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { styled, TextField, InputAdornment, Box } from '@mui/material';
 import { useNavigate } from "react-router";
 import SearchIcon from '@mui/icons-material/Search';
@@ -33,13 +33,13 @@ function NavbarSearchBar() {
 
     const [searchTerm, setSearchTerm] = useState('');
 
-    const searchProduct = () => {
+    const searchProduct = useCallback(() => {
         navigate('/products');
-    }
+    }, [navigate]);
 
-    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
-    }
+    }, []);
 
     return (
         <Box component="form" onSubmit={searchProduct}>

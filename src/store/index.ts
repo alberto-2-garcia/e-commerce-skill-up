@@ -23,17 +23,17 @@ export const store = configureStore({
 
 export function setupStore(preloadedState?: Partial<RootState>) {
     return configureStore({
-      reducer: rootReducer,
-      preloadedState
+        reducer: rootReducer,
+        preloadedState
     })
-  }
+}
 
 export const persistor = persistStore(store);
 
 // Get the type of our store variable
-export type AppStore = typeof store
+export type AppStore = ReturnType<typeof setupStore>
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<AppStore['getState']>
+export type RootState = ReturnType<typeof rootReducer>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = AppStore['dispatch']
 

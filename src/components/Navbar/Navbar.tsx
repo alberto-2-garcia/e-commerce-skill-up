@@ -26,7 +26,7 @@ export default function Navbar() {
     );
 
     useEffect(() => {
-        if(accessToken) {
+        if(accessToken && !shoppingCartData.user_id) {
             dispatch(setShoppingCart({...shoppingCartData, user_id: user}));
         }
     }, [accessToken, dispatch, shoppingCartData, user])

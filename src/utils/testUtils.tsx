@@ -18,15 +18,20 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 
 export function renderWithProviders(
     ui: React.ReactElement,
-    extendedRenderOptions: ExtendedRenderOptions = {},
-    initialEntries: string[] = ["/"]
-) {
-    const {
+    {
         preloadedState = {},
         // Automatically create a store instance if no store was passed in
         store = setupStore(preloadedState),
         ...renderOptions
-    } = extendedRenderOptions;
+      }: ExtendedRenderOptions = {},
+    initialEntries: string[] = ["/"]
+) {
+    // const {
+    //     preloadedState = {},
+    //     // Automatically create a store instance if no store was passed in
+    //     store = setupStore(preloadedState),
+    //     ...renderOptions
+    // } = extendedRenderOptions;
 
     let testHistory, testLocation;
   
@@ -37,13 +42,8 @@ export function renderWithProviders(
                     <Routes>
                         <Route
                             path="*"
-                            render={({ history, location }) => {
-                                testHistory = history;
-                                testLocation = location;
-                                return null;
-                            }}
                             element={children}
-                            />
+                        />
                     </Routes>
                 </MemoryRouter>
             </QueryClientProvider>
