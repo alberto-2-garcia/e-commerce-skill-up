@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { HashRouter, Route, Routes } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from '@mui/material';
 import { theme } from "./theme";
@@ -24,7 +24,7 @@ function App() {
             <PersistGate loading={null} persistor={persistor}>
                 <QueryClientProvider client={queryClient}>
                     <ThemeProvider theme={theme}>
-                        <BrowserRouter>
+                        <HashRouter>
                             <Routes>
                                 <Route path='/' element={<Home />} />
                                 <Route path='/products' element={<Products />} />
@@ -37,7 +37,7 @@ function App() {
                                 <Route path='/profile' element={<Profile />} />
                                 <Route path="*" element={<NotFound />} />
                             </Routes>
-                        </BrowserRouter>
+                        </HashRouter>
                     </ThemeProvider>
                 </QueryClientProvider>
             </PersistGate>
