@@ -69,8 +69,8 @@
   },
   "msw": {
     "workerDirectory": [
-      "public",
-      "dist/e-commerce-skill-up"
+      "./public",
+      "./dist/e-commerce-skill-up"
     ]
   }
 }

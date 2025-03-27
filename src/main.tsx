@@ -8,7 +8,12 @@ async function enableMocking() {
 
     const { worker } = await import('./api/index.ts');
 
-    return worker.start();
+    return worker.start({
+        serviceWorker: {
+            url: '/e-commerce-skill-up/mockServiceWorker.js',
+        },
+        quiet: true
+    });
 }
 
 enableMocking().then(() =>
