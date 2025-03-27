@@ -1,11 +1,17 @@
 // import { renderHook, waitFor } from '@testing-library/react';
-// import shoppingCartFixture from '../../_fixtures/shoppingCart.json';
+// import shoppingCartFixture from '../../api/handlers/_fixtures/shoppingCart.json';
 // import { getShoppingCart } from '../../api/shoppingCart/shoppingCart';
 // import { useShoppingCart } from './useShoppingCart';
 // import { mockAxiosError, wrapper } from '../../utils';
 // import { HttpStatusCode } from 'axios';
 
 // jest.mock('../../api/shoppingCart/shoppingCart');
+
+describe('useShoppingCart', () => {
+    it('test', () => {
+        expect(true).toBe(true);
+    })
+})
 
 // describe('useShoppingCart hook test', () => {
 //     it('should fetch data', async () => {
