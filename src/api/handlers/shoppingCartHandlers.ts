@@ -1,4 +1,4 @@
-import { DefaultRequestMultipartBody, http, HttpResponse } from 'msw';
+import { DefaultRequestMultipartBody, http, HttpResponse, PathParams } from 'msw';
 import shoppingCartFixture from './_fixtures/shoppingCart.json';
 import { FETCH_SHOPPING_CART_PATH, CHECKOUT_PATH } from '../../constants/apiConstants';
 
@@ -10,7 +10,7 @@ export const shoppingCartHandlers = [
     http.get(`${FETCH_SHOPPING_CART_PATH}`, async () => {
         return HttpResponse.json(shoppingCartFixture);
     }),
-    http.post<{}, CheckoutRequesBodyType>(`${CHECKOUT_PATH}`, async ({ request }) => {
+    http.post<PathParams, CheckoutRequesBodyType>(`${CHECKOUT_PATH}`, async ({ request }) => {
         const data = await request.json();
         const { shopping_cart_id } = data;
         if (shopping_cart_id) {
