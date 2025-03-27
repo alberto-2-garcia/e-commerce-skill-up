@@ -1,16 +1,16 @@
 import { DefaultRequestMultipartBody, http, HttpResponse } from 'msw';
 import shoppingCartFixture from './_fixtures/shoppingCart.json';
-import { DEV_BASE_URL, FETCH_SHOPPING_CART_PATH, CHECKOUT_PATH } from '../../constants/apiConstants';
+import { FETCH_SHOPPING_CART_PATH, CHECKOUT_PATH } from '../../constants/apiConstants';
 
 type CheckoutRequesBodyType = DefaultRequestMultipartBody & {
     shopping_cart_id: number;
 };
 
 export const shoppingCartHandlers = [
-    http.get(`${DEV_BASE_URL}${FETCH_SHOPPING_CART_PATH}`, async () => {
+    http.get(`${FETCH_SHOPPING_CART_PATH}`, async () => {
         return HttpResponse.json(shoppingCartFixture);
     }),
-    http.post<{}, CheckoutRequesBodyType>(`${DEV_BASE_URL}${CHECKOUT_PATH}`, async ({ request }) => {
+    http.post<{}, CheckoutRequesBodyType>(`${CHECKOUT_PATH}`, async ({ request }) => {
         const data = await request.json();
         const { shopping_cart_id } = data;
         if (shopping_cart_id) {
