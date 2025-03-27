@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://alberto-2-garcia.github.io/e-commerce-skill-up",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
