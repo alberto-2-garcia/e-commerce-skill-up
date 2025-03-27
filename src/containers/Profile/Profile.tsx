@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from '../../store';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { clearUserData } from '../../store/userSlice';
 import { Box, Button, Container, Typography } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';

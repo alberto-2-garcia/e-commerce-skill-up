@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { styled, TextField, InputAdornment, Box } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import SearchIcon from '@mui/icons-material/Search';
 
 const StyledSearchBar = styled(TextField)(({ theme }) => ({

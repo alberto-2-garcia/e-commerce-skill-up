@@ -21,7 +21,7 @@ export default {
             statements: -20,
         },
     },
-    testMatch: ['**/*.test.js*'],
+    testMatch: ['**/*.test.ts*'],
     setupFilesAfterEnv: ['@testing-library/jest-dom/'],
     testEnvironmentOptions: {
         customExportConditions: [''],

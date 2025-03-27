@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { Box, Card, CardContent, Typography, Button, Stack, CardMedia, CardActions, CardActionArea } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { ProductCardProps } from './types';
 import { PRODUCT_PAGE } from '../../../constants/routesConstants';
 import { useAppDispatch } from '../../../store';
 import { addProduct } from '../../../store/shoppingCartSlice';
+import { formatMoney } from '../../../utils/utils';
 
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -43,7 +44,7 @@ const ProductCard: FC<ProductCardProps> = ({
                                     </Typography>
                                     <Typography>{long_description}</Typography>
                                 </Box>
-                                <Typography sx={{ fontWeight: 'bold' }}>${price} MXN</Typography>
+                                <Typography sx={{ fontWeight: 'bold' }}>{formatMoney(price)}</Typography>
                             </Stack>
                         </CardContent>
                     </Stack>

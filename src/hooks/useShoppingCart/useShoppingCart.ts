@@ -1,7 +1,7 @@
 import { HttpStatusCode } from 'axios';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { getShoppingCart, checkout } from '../../api/shoppingCart/shoppingCart';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { ShoppingCart } from '../../constants/shoppingCartTypes'
 import { QueryError } from '../../constants/types';
 import { useAppDispatch } from '../../store';

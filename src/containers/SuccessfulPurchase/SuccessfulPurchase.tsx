@@ -1,6 +1,6 @@
 import { Container, Typography, styled, Stack, Box } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 import Navbar from '../../components/Navbar/Navbar';
 import usePurchaseOrders from '../../hooks/usePurchaseOrders/usePurchaseOrders';
 

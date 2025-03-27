@@ -1,6 +1,6 @@
 import { useState, SyntheticEvent, ChangeEvent, useEffect } from 'react';
 import { Paper, Typography, Link, Stack, Snackbar, Alert } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import LoginForm from './LoginForm/LoginForm';
 import { LoginFormValues } from '../../constants/userTypes';
 import useUser from '../../hooks/useUser/useUser';

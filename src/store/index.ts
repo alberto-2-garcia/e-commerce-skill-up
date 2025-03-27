@@ -21,6 +21,13 @@ export const store = configureStore({
     reducer: persistedReducer,
 });
 
+export function setupStore(preloadedState?: Partial<RootState>) {
+    return configureStore({
+      reducer: rootReducer,
+      preloadedState
+    })
+  }
+
 export const persistor = persistStore(store);
 
 // Get the type of our store variable

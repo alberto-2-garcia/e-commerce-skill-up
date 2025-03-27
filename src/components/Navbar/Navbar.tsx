@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { AppBar, Box, Typography, Button, Stack, styled, IconButton } from '@mui/material';
 import { Person, ShoppingCartOutlined } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../store';
 import NavbarSearchBar from './NavbarSearchBar/NavbarSearchBar';
 import { setShoppingCart, clearShoppingCart } from '../../store/shoppingCartSlice';

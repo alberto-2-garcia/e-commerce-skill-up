@@ -5,7 +5,7 @@ import { useShoppingCart } from '../../hooks/useShoppingCart/useShoppingCart';
 import useProducts from '../../hooks/useProducts/useProducts';
 import ProductRow from '../../components/ProductRow/ProductRow';
 import { useAppSelector } from '../../store';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { formatMoney } from '../../utils/utils';
 
 const ProductsContainer = styled(Paper)(() => ({

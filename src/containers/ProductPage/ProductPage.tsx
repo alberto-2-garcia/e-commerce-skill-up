@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { Box, Container, Stack, Typography, Button, Rating, Divider, Grid2 as Grid, styled, Paper } from "@mui/material";
 import Navbar from "../../components/Navbar/Navbar";
 import useProducts from "../../hooks/useProducts/useProducts";

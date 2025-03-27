@@ -1,6 +1,6 @@
 import { useState, SyntheticEvent, ChangeEvent } from 'react';
 import { Paper, Typography, Link, Stack } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import SignUpForm from './SignUpForm/SignUpForm';
 import { SignUpFormValues } from '../../constants/userTypes';
 
