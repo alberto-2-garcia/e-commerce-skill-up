@@ -4,7 +4,7 @@ import { Person, ShoppingCartOutlined } from '@mui/icons-material';
 import { Link } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../store';
 import NavbarSearchBar from './NavbarSearchBar/NavbarSearchBar';
-import { setShoppingCart, clearShoppingCart } from '../../store/shoppingCartSlice';
+import { setShoppingCart } from '../../store/shoppingCartSlice';
 
 const NavbarStack = styled(Stack)(({ theme }) => ({
     padding: theme.spacing(2)
@@ -29,7 +29,7 @@ export default function Navbar() {
         if(accessToken) {
             dispatch(setShoppingCart({...shoppingCartData, user_id: user}));
         }
-    }, [accessToken])
+    }, [accessToken, dispatch, shoppingCartData, user])
 
     return (
         <Box sx={{ flexGrow: 1 }}>

@@ -1,4 +1,3 @@
-import { HttpStatusCode } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { getProducts, getProductById } from '../../api/products/products';
 import { Product } from '../../constants/productsTypes';

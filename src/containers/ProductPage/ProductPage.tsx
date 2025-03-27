@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../store";
 import { addProduct } from "../../store/shoppingCartSlice";
 
 
-const ProductImage = styled('img')<{ src: String; }>(({ src }) => ({
+const ProductImage = styled('img')(() => ({
     objectFit: 'cover',
     width: '100%',
     height: '40vh',
@@ -31,7 +31,7 @@ function ProductPage() {
         <Box>
             <Navbar />
             <Container maxWidth='xl'>
-                {!!product
+                {product
                 ?
                     <Grid container spacing={2} sx={{ marginTop: 8 }}>
                         <Grid size={5}>

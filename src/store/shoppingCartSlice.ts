@@ -22,7 +22,7 @@ const shoppingCartSlice = createSlice({
         const currProduct = state.products.find(pro => pro.id === action.payload.id);
         return {
             ...state,
-            products: !!currProduct
+            products: currProduct
                 ? editProductHelperFunction(state.products, { ...action.payload, quantity: action.payload.quantity + currProduct.quantity})
                 : [...state.products, action.payload]
         }

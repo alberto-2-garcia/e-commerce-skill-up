@@ -1,5 +1,5 @@
 import { FormEventHandler, ChangeEventHandler } from 'react';
-import { Box, TextField, Stack, Link } from '@mui/material';
+import { Box, TextField, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { SignUpFormValues } from '../../../constants/userTypes';
 

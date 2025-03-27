@@ -17,7 +17,7 @@ const Login = () => {
     const { isSuccess, isError } = loginState;
 
     const [values, setValues] = useState<LoginFormValues>(initialLoginValues);
-    const [errors, setErrors] = useState<LoginFormValues>(initialLoginValues);
+    const [errors] = useState<LoginFormValues>(initialLoginValues);
     const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
 
     const handleCloseSnackbar = () => {

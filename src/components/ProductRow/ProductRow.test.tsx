@@ -1,20 +1,28 @@
-// import { render, screen } from '@testing-library/react';
-// import shoppingCartFixture from '../../../_fixtures/shoppingCart.json';
-// import ProductRow from './ProductRow';
+import { screen, waitFor } from '@testing-library/react';
+import { renderWithProviders, handlerServer } from '../../utils/testUtils';
+import ProductRow from './ProductRow';
+import productsFixture from '../../api/handlers/_fixtures/products.json' ;
+import shoppingCartFixture from '../../api/handlers/_fixtures/shoppingCart.json' ;
+import { formatMoney } from '../../utils/utils';
 
-// describe('ProductRow component test', () => {
-//   it('Should render properties given, with right formatting', () => {
-//     const data = shoppingCartFixture.products[0]
-//     render(<ProductRow {...data} />);
+describe("<ProductRow />", () => {
+    // Enable API mocking before tests.
+    beforeAll(() => handlerServer.listen());
 
-//     expect(screen.getByText('Cabeza de Lego')).toBeVisible();
-//     expect(
-//         screen.getByText(
-//             'Coleccion de cabeza de legos a granel para armado'
-//         )
-//     ).toBeVisible();
-//     expect(screen.getByText('2')).toBeVisible();
-//     expect(screen.getByText('$100 MXN')).toBeVisible();
-//     expect(screen.getByText('$200 MXN')).toBeVisible();
-//   });
-// });
+    // Reset any runtime request handlers we may add during the tests.
+    afterEach(() => handlerServer.resetHandlers());
+
+    // Disable API mocking after the tests are done.
+    afterAll(() => handlerServer.close());
+
+    it("renders card", async () => {
+        const firstShoppingCartProduct = shoppingCartFixture.products[0];
+        const shoppingCartProduct = {...productsFixture.find(product => product.id === firstShoppingCartProduct.id)!, ...firstShoppingCartProduct};
+        renderWithProviders(<ProductRow {...shoppingCartProduct} />)
+        await waitFor(() => {
+            expect(screen.queryByText(productsFixture[0].short_description)).toBeInTheDocument();
+            expect(screen.queryByText(productsFixture[0].long_description)).toBeInTheDocument();
+            expect(screen.queryByText(formatMoney(productsFixture[0].price))).toBeInTheDocument();
+        })
+    });
+});

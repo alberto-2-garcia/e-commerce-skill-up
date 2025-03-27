@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { Box, Card, CardContent, Typography, Button, Stack, CardMedia, CardActions, CardActionArea } from '@mui/material';
 import { useNavigate } from 'react-router';
-import { ProductCardProps } from './types';
 import { PRODUCT_PAGE } from '../../../constants/routesConstants';
 import { useAppDispatch } from '../../../store';
 import { addProduct } from '../../../store/shoppingCartSlice';
 import { formatMoney } from '../../../utils/utils';
+import { Product } from '../../../constants/productsTypes';
 
 
-const ProductCard: FC<ProductCardProps> = ({
+const ProductCard: FC<Product> = ({
     short_description,
     long_description,
     price,
