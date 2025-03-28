@@ -40,7 +40,7 @@ export default function Navbar() {
                     alignItems="center"
                     spacing={0}
                 >
-                    <NavbarLink to='/'>
+                    <NavbarLink to='/' sx={{ textDecoration: 'none' }}>
                         <Typography variant="h6">Ecommerce</Typography>
                     </NavbarLink>
                     <NavbarSearchBar />

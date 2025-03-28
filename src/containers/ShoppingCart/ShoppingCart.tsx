@@ -89,9 +89,9 @@ function ShoppingCart() {
                     direction="column"
                     spacing={1}
                     sx={{
-                    justifyContent: "flex-start",
-                    alignItems: "flex-end",
-                    marginTop: 2
+                        justifyContent: "flex-start",
+                        alignItems: "flex-end",
+                        marginTop: 2
                     }}
                 >
                     <ConfirmPurchaseContainer>
@@ -99,9 +99,9 @@ function ShoppingCart() {
                         direction="column"
                         spacing={1}
                         sx={{
-                        justifyContent: "center",
-                        alignItems: "flex-end",
-                        height: '100%'
+                            justifyContent: "center",
+                            alignItems: "flex-end",
+                            height: '100%'
                         }}
                     >
                         <Typography>Total: {formatMoney(totalShoppingCart)}</Typography>

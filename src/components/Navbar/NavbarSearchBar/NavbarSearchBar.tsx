@@ -33,7 +33,8 @@ function NavbarSearchBar() {
 
     const [searchTerm, setSearchTerm] = useState('');
 
-    const searchProduct = useCallback(() => {
+    const searchProduct = useCallback((e: React.SyntheticEvent<HTMLFormElement>) => {
+        e.preventDefault();
         navigate('/products');
     }, [navigate]);
 
