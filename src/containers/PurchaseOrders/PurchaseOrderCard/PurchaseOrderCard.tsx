@@ -1,6 +1,7 @@
 import { Box, Paper, Stack, Typography, Divider, styled } from '@mui/material';
 import { PurchaseOrder } from '../../../constants/purchaseOrdersTypes';
 import { DateTime } from 'luxon';
+import { formatMoney } from '../../../utils/utils';
 
 function PurchaseOrderHeaderInfo({ label, header }: { label: string | number; header: string; }) {
     return (
@@ -47,7 +48,7 @@ function PurchaseOrderCard({ purchase_order_id, products, createdDttm, total }: 
                         />
                         <Stack justifyContent="center">
                             <Typography>{product.short_description}</Typography>
-                            <Typography>${product.price} MXN</Typography>
+                            <Typography>{formatMoney(product.price)}</Typography>
                         </Stack>
                     </Stack>
                 ))}

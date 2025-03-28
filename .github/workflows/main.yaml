@@ -13,7 +13,7 @@ jobs:
     - name: Install modules
       run: yarn
     - name: Run tests
-      run: yarn test
+      run: yarn test:ci
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
